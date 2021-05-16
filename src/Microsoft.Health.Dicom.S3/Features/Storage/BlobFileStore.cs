@@ -21,11 +21,11 @@ namespace Microsoft.Health.Dicom.S3.Features.Storage
     {
         private const string BucketName = "test-server-v2";
 
-        private readonly IAmazonS3 s3Client;
+        private readonly IAmazonS3 _s3Client;
 
         public BlobFileStore(IAmazonS3 s3Client)
         {
-            this.s3Client = s3Client;
+            _s3Client = s3Client;
         }
 
         public Task<Uri> StoreFileAsync(VersionedInstanceIdentifier versionedInstanceIdentifier, Stream stream,
@@ -49,7 +49,7 @@ namespace Microsoft.Health.Dicom.S3.Features.Storage
                         $"{versionedInstanceIdentifier.StudyInstanceUid}/{versionedInstanceIdentifier.SeriesInstanceUid}/{versionedInstanceIdentifier.SopInstanceUid}/{fileName}"
                 };
 
-                await s3Client.GetObjectAsync(request, cancellationToken);
+                await _s3Client.GetObjectAsync(request, cancellationToken);
             }
             catch (AmazonS3Exception e)
             {

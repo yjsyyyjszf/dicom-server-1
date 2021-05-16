@@ -20,11 +20,11 @@ namespace Microsoft.Health.Dicom.S3.Features.Storage
 {
     public class IndexDataStore : IIndexDataStore
     {
-        private readonly ConcurrentBag<DataStore> datas;
+        private readonly ConcurrentBag<DataStore> _datas;
 
         public IndexDataStore()
         {
-            datas = new ConcurrentBag<DataStore>();
+            _datas = new ConcurrentBag<DataStore>();
         }
 
         public async Task<long> CreateInstanceIndexAsync(DicomDataset dicomDataset, IEnumerable<QueryTag> queryTags,
@@ -33,9 +33,9 @@ namespace Microsoft.Health.Dicom.S3.Features.Storage
             var task = new Task<long>(() =>
             {
                 var data = new DataStore(dicomDataset);
-                if (!datas.Contains(data))
+                if (!_datas.Contains(data))
                 {
-                    datas.Add(data);
+                    _datas.Add(data);
                 }
 
                 return 1;
