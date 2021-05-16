@@ -1,0 +1,16 @@
+variables:
+  deploymentName: 'dcm-ci-permanent'
+  testEnvironmentUrl: 'https://$(deploymentName).azurewebsites.net/'
+  resourceGroupName: $(deploymentName)
+  resourceGroupRegion: 'southcentralus'
+  appServicePlanResourceGroup: 'msh-dicom-pr'
+  appServicePlanName: $(appServicePlanResourceGroup)-$(resourceGroupRegion)
+  azureServiceConnectionOid: '4d4d503d-9ca8-462e-9e18-b35fc8b5285b'
+  azureSubscriptionName: 'Microsoft Health Open Source Subscription-DicomServer'
+  windowsVmImage: 'windows-latest'
+  buildConfiguration: 'Release'
+  imageTag: '$(build.BuildNumber)'
+  azureContainerRegistry: 'dicomoss.azurecr.io'
+  dicomServerComposeLocation: 'build/docker/docker-compose.yaml'
+  dicomCastComposeLocation: 'converter/dicom-cast/build/docker/docker-compose.yaml'
+  skipNugetSecurityAnalysis: 'true' # NuGet config contains multiple feeds but meets exception criteria

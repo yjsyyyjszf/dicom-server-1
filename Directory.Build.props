@@ -1,0 +1,43 @@
+<Project>
+
+  <PropertyGroup>
+    <Authors>Microsot Health Team</Authors>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <Company>Microsoft Corporation</Company>
+    <Copyright>Copyright © Microsoft Corporation. All rights reserved.</Copyright>
+    <Deterministic>true</Deterministic>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <HealthcareSharedPackageVersion>2.1.15</HealthcareSharedPackageVersion>
+    <HighEntropyVA>true</HighEntropyVA>
+    <LangVersion>Latest</LangVersion>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Product>Microsoft Health</Product>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <SdkPackageVersion>5.0.0</SdkPackageVersion>
+    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <Choose>
+    <When Condition="$(MSBuildProjectName.Contains('Test'))">
+      <PropertyGroup>
+        <IsPackable>false</IsPackable>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <AnalysisLevel>5.0</AnalysisLevel>
+        <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+        <IsPackable>true</IsPackable>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+</Project>

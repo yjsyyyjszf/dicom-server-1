@@ -1,0 +1,13 @@
+variables:
+  prNumber: $(system.pullRequest.pullRequestNumber)
+  deploymentName: 'msh-dicom-pr-$(prNumber)'
+  testEnvironmentUrl: 'https://$(deploymentName).azurewebsites.net/'
+  resourceGroupName: $(deploymentName)
+  resourceGroupRegion: 'southcentralus'
+  appServicePlanResourceGroup: 'msh-dicom-pr'
+  appServicePlanName: $(appServicePlanResourceGroup)-$(resourceGroupRegion)
+  azureServiceConnectionOid: '4d4d503d-9ca8-462e-9e18-b35fc8b5285b'
+  azureSubscriptionName: 'Microsoft Health Open Source Subscription-DicomServer'
+  windowsVmImage: 'windows-latest'
+  buildConfiguration: 'Release'
+  skipNugetSecurityAnalysis: 'true' # NuGet config contains multiple feeds but meets exception criteria
